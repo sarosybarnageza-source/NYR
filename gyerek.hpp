@@ -2,7 +2,7 @@
 #define GYEREK_HPP
 
 #include <string>
-#include <vector>
+#include "tarolo.hpp"
 #include "date.hpp"
 #include "berlet.hpp"
 #include "jelenlet.hpp"
@@ -11,7 +11,7 @@
 class Gyerek {
 private:
         //Azonosító, rendszer fogja osztani, egyedi módon azonosítja a gyereket a rendszerben
-        int id;
+        size_t id;
         //Teljes név (vezetéknév + keresztnév)
         std::string nev;
         //Születési dátum
@@ -39,13 +39,13 @@ private:
          * @details Ez a mező egy vektort tartalmaz, amelyben a gyerek minden jelenléte szerepel,
          * beleértve a jelenlét dátumát és a fizetési állapotot. 
          */
-        std::vector<Jelenlet> jelenletek;
+        Tarolo<Jelenlet> jelenletek;
         /**
          * @brief A múltbeli befizetések adatai,
          * @details amelyek tartalmazzák a befizetés dátumát, összegét, fizetési módját és egy opcionális megjegyzést.
-         * *Pointereket tárolunk, mert az eredeti objektum a Rendszerben lakik.
+         * @warning //!Pointereket tárolunk, mert az eredeti objektum a Rendszerben lakik.
          */
-        std::vector<Befizetes*> befizetesek;
+        Tarolo<Befizetes*> befizetesek;
 
 public:
         //*Konstruktor
@@ -61,7 +61,7 @@ public:
          * @param szuloT a gyerek szülőjének telefonszáma
          * @param vers a gyerek versenyzői státusza, alapértelmezetten false (nem versenyző)
          */
-        Gyerek(int i, const std::string& n, const Date& szuletesiD, const std::string& szuloN, const std::string& szuloT, bool vers = false) 
+        Gyerek(size_t i, const std::string& n, const Date& szuletesiD, const std::string& szuloN, const std::string& szuloT, bool vers = false) 
                 : id(i), nev(n), szuletesiDatum(szuletesiD), szuloNev(szuloN), szuloTelefonszam(szuloT), versenyzo(vers), hasznaltProba(false), berlet(BerletTipus::Nincs, 0), torolt(false) {};
         
         //*Getters
@@ -70,7 +70,7 @@ public:
          * @brief Lekérdezi a gyerek azonosítóját.
          * @return A gyerek azonosítója.
          */
-        int getId() const { return id; };
+        size_t getId() const { return id; };
 
         /**
          * @brief Lekérdezi a gyerek nevét.
