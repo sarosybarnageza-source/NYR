@@ -53,6 +53,20 @@ public:
         //* Operátorok
 
         /**
+         * @brief Értékadó operátor
+         * @param other 
+         * @return Date& 
+         */
+        Date& operator=(const Date& other) {
+                if (this != &other) {
+                        ev = other.ev;
+                        ho = other.ho;
+                        nap = other.nap;
+                }       
+                return *this;
+        }
+
+        /**
          * @brief Összehasonlító operátor a dátumok rendezéséhez és összehasonlításához.
          * @param other a másik dátum, amellyel összehasonlítjuk ezt a dátumot
          * @return true, ha ez a dátum kisebb, mint a másik

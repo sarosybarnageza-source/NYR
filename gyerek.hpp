@@ -67,7 +67,7 @@ public:
          * @param vers a gyerek versenyzői státusza, alapértelmezetten false (nem versenyző)
          */
         Gyerek(size_t i, const std::string& n, const Date& szuletesiD, const std::string& szuloN, const std::string& szuloT, bool vers = false) 
-                : id(i), nev(n), szuletesiDatum(szuletesiD), szuloNev(szuloN), szuloTelefonszam(szuloT), versenyzo(vers), hasznaltProba(false), berlet(BerletTipus::Nincs, 0), torolt(false) {};
+                : id(i), nev(n), szuletesiDatum(szuletesiD), szuloNev(szuloN), szuloTelefonszam(szuloT), versenyzo(vers), hasznaltProba(false), torolt(false), berlet(BerletTipus::Nincs, 0) {};
         
         //*Getters
 
