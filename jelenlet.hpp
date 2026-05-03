@@ -4,6 +4,11 @@
 #include <string>
 #include "date.hpp"
 
+#ifdef MEMTRACE
+ #include "memtrace_gtest/memtrace.h"
+ #include "memtrace_gtest/gtest_lite.h"
+#endif
+
 class Jelenlet {
 private:
         // Jelenlét dátuma Formátum: "YYYY-MM-DD"

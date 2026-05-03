@@ -8,6 +8,11 @@
 #include "jelenlet.hpp"
 #include "befizetes.hpp"
 
+#ifdef MEMTRACE
+ #include "memtrace_gtest/memtrace.h"
+ #include "memtrace_gtest/gtest_lite.h"
+#endif
+
 class Gyerek {
 private:
         //Azonosító, rendszer fogja osztani, egyedi módon azonosítja a gyereket a rendszerben
