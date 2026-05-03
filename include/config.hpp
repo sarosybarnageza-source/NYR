@@ -5,8 +5,8 @@
 #include "tipusok.hpp"
 
 #ifdef MEMTRACE
- #include "memtrace_gtest/memtrace.h"
- #include "memtrace_gtest/gtest_lite.h"
+ #include "memtrace.h"
+ #include "gtest_lite.h"
 #endif
 
 
