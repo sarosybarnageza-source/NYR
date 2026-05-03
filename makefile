@@ -1,35 +1,43 @@
-# Fordító és flagek
 CXX = g++
-# A -fno-pie és -no-pie segít elkerülni a "relocation against read-only section" hibát
-CXXFLAGS = -std=c++11 -Wall -Wextra -DMEMTRACE -g -Imemtrace_gtest -fno-pie
+CXXFLAGS = -std=c++11 -Wall -Wextra -DMEMTRACE -g -Iinclude -Ilib
 LDFLAGS = -no-pie
 
-TARGET = nyr
+# Mappák meghatározása
+SRC_DIR = src
+INC_DIR = include
+LIB_DIR = lib/memtrace_gtest
+OBJ_DIR = build
+BIN_DIR = bin
 
-# Minden létező forrásfájl
-SOURCES = main.cpp \
-          rendszer.cpp \
-          gyerek.cpp \
-          date.cpp \
-          berlet.cpp \
-          memtrace_gtest/memtrace.cpp
+TARGET = $(BIN_DIR)/nyr
 
-OBJECTS = $(SOURCES:.cpp=.o)
+# Források keresése több mappában
+SOURCES = $(wildcard $(SRC_DIR)/*.cpp) $(LIB_DIR)/memtrace.cpp
+# Objektumok listája (a build mappába irányítva)
+OBJECTS = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(notdir $(SOURCES)))
 
-all: $(TARGET)
+# Alapértelmezett cél
+all: directories $(TARGET)
 
+# Könyvtárak létrehozása, ha nem léteznek
+directories:
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(BIN_DIR)
+
+# Linkelés
 $(TARGET): $(OBJECTS)
 	$(CXX) $(OBJECTS) $(LDFLAGS) -o $(TARGET)
 
-# Kifejezetten figyelünk arra, hogy minden .cpp-t ugyanazokkal a flagekkel fordítsunk
-%.o: %.cpp
+# Fordítás (VPATH segít megtalálni a forrásokat a mappákban)
+vpath %.cpp $(SRC_DIR) $(LIB_DIR)
+
+$(OBJ_DIR)/%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(TARGET) $(OBJECTS)
-	rm -f memtrace_gtest/*.o
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
-run: $(TARGET)
+run: all
 	./$(TARGET)
 
-.PHONY: all clean run
+.PHONY: all clean run directories

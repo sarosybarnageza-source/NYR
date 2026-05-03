@@ -45,8 +45,8 @@ A projekt megfelel a tárgy szigorú akadémiai követelményeinek:
 A projekt lefordításához egy C++11 (vagy újabb) szabványt támogató fordítóra van szükség.
 
 ```bash
-# Fordítás g++ segítségével
-g++ -std=c++11 -Wall -Wextra main.cpp rendszer.cpp gyerek.cpp -o nyr
+# Fordítás Makefile segítségével
+make
 
 # Futtatás
 ./nyr

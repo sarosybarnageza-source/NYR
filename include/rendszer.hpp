@@ -7,8 +7,8 @@
 #include "befizetes.hpp"
 
 #ifdef MEMTRACE
- #include "memtrace.h"
- #include "gtest_lite.h"
+ #include "../lib/memtrace_gtest/memtrace.h"
+ #include "../lib/memtrace_gtest/gtest_lite.h"
 #endif
 
 class Rendszer {

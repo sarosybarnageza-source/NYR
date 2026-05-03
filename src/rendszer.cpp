@@ -1,4 +1,4 @@
-#include "rendszer.hpp"
+#include "../include/rendszer.hpp"
 
 Rendszer::Rendszer() {
 

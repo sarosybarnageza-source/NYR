@@ -1,4 +1,4 @@
-#include "gyerek.hpp"
+#include "../include/gyerek.hpp"
 
 void Gyerek::jelenletHozzaad(const Jelenlet& j) {
     

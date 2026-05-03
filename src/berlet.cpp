@@ -1,4 +1,4 @@
-#include "berlet.hpp"
+#include "../include/berlet.hpp"
 
 void Berlet::hozzaadAlkalom(int n) {
         if (n <= 0) return;
